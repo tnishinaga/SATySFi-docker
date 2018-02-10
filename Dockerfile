@@ -14,7 +14,7 @@ RUN mkdir -p $SATYSFI_LIB_ROOT/dist/fonts && \
     unzip -d /tmp /tmp/ipaexm00201.php && \
     cp /tmp/ipaexm00201/ipaexm.ttf $SATYSFI_LIB_ROOT/dist/fonts
     
-RUN git clone https://github.com/gfngfn/SATySFi /home/opam/SATySFi
+RUN git clone https://github.com/pandaman64/SATySFi /home/opam/SATySFi -b use-free-font
 
 WORKDIR /home/opam/SATySFi
 
