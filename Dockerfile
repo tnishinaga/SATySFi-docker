@@ -9,6 +9,9 @@ ENV USER opam
 USER $USER
 ENV SATYSFI_LIB_ROOT /home/$USER/.opam/4.05.0/lib-satysfi
 RUN mkdir -p $SATYSFI_LIB_ROOT/dist/fonts && \
+    wget https://dl.dafont.com/dl/?f=coolvetica -O /tmp/coolvetica.zip && \
+    unzip -d /tmp /tmp/coolvetica.zip && \
+    mv "/tmp/coolvetica rg.ttf" $SATYSFI_LIB_ROOT/dist/fonts/coolvetica.ttf && \
     wget https://www.wfonts.com/download/data/2014/12/28/arno-pro/ArnoPro-Regular.otf -P $SATYSFI_LIB_ROOT/dist/fonts/ && \
     wget https://oscdl.ipa.go.jp/IPAexfont/IPAexfont00301.zip -P /tmp && \
     unzip -d /tmp /tmp/IPAexfont00301.zip && \
