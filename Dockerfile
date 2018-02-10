@@ -10,9 +10,9 @@ USER $USER
 ENV SATYSFI_LIB_ROOT /home/$USER/.opam/4.05.0/lib-satysfi
 RUN mkdir -p $SATYSFI_LIB_ROOT/dist/fonts && \
     wget https://www.wfonts.com/download/data/2014/12/28/arno-pro/ArnoPro-Regular.otf -P $SATYSFI_LIB_ROOT/dist/fonts/ && \
-    wget https://ipafont.ipa.go.jp/old/ipaexfont/ipaexm00201.php -P /tmp && \
-    unzip -d /tmp /tmp/ipaexm00201.php && \
-    cp /tmp/ipaexm00201/ipaexm.ttf $SATYSFI_LIB_ROOT/dist/fonts
+    wget https://oscdl.ipa.go.jp/IPAexfont/IPAexfont00301.zip -P /tmp && \
+    unzip -d /tmp /tmp/IPAexfont00301.zip && \
+    mv /tmp/IPAexfont00301/ipaexg.ttf /tmp/IPAexfont00301/ipaexm.ttf $SATYSFI_LIB_ROOT/dist/fonts
     
 RUN git clone https://github.com/pandaman64/SATySFi /home/opam/SATySFi -b use-free-font
 
