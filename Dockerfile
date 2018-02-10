@@ -9,9 +9,7 @@ ENV USER opam
 USER $USER
 ENV SATYSFI_LIB_ROOT /home/$USER/.opam/4.05.0/lib-satysfi
 RUN mkdir -p $SATYSFI_LIB_ROOT/dist/fonts && \
-    wget https://dl.dafont.com/dl/?f=coolvetica -O /tmp/coolvetica.zip && \
-    unzip -d /tmp /tmp/coolvetica.zip && \
-    mv "/tmp/coolvetica rg.ttf" $SATYSFI_LIB_ROOT/dist/fonts/coolvetica.ttf && \
+    wget https://github.com/google/fonts/raw/master/apache/opensans/OpenSans-Regular.ttf -P $SATYSFI_LIB_ROOT/dist/fonts && \
     wget https://github.com/google/fonts/raw/master/ofl/crimsontext/CrimsonText-Regular.ttf -P $SATYSFI_LIB_ROOT/dist/fonts && \
     wget https://github.com/google/fonts/raw/master/ofl/crimsontext/CrimsonText-Italic.ttf -P $SATYSFI_LIB_ROOT/dist/fonts && \
     wget https://oscdl.ipa.go.jp/IPAexfont/IPAexfont00301.zip -P /tmp && \
