@@ -19,5 +19,4 @@ RUN git clone https://github.com/gfngfn/SATySFi /home/opam/SATySFi
 WORKDIR /home/opam/SATySFi
 
 RUN git submodule update -i && \
-    opam pin add -y satysfi . && \
-    opam install -y satysfi
+    opam pin add -y satysfi .
