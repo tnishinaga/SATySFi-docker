@@ -12,7 +12,8 @@ RUN mkdir -p $SATYSFI_LIB_ROOT/dist/fonts && \
     wget https://dl.dafont.com/dl/?f=coolvetica -O /tmp/coolvetica.zip && \
     unzip -d /tmp /tmp/coolvetica.zip && \
     mv "/tmp/coolvetica rg.ttf" $SATYSFI_LIB_ROOT/dist/fonts/coolvetica.ttf && \
-    wget https://www.wfonts.com/download/data/2014/12/28/arno-pro/ArnoPro-Regular.otf -P $SATYSFI_LIB_ROOT/dist/fonts/ && \
+    wget https://github.com/google/fonts/raw/master/ofl/crimsontext/CrimsonText-Regular.ttf -P $SATYSFI_LIB_ROOT/dist/fonts && \
+    wget https://github.com/google/fonts/raw/master/ofl/crimsontext/CrimsonText-Italic.ttf -P $SATYSFI_LIB_ROOT/dist/fonts && \
     wget https://oscdl.ipa.go.jp/IPAexfont/IPAexfont00301.zip -P /tmp && \
     unzip -d /tmp /tmp/IPAexfont00301.zip && \
     mv /tmp/IPAexfont00301/ipaexg.ttf /tmp/IPAexfont00301/ipaexm.ttf $SATYSFI_LIB_ROOT/dist/fonts
