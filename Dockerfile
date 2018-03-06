@@ -14,18 +14,6 @@ RUN git pull && eval `opam config env` && opam update
 # see https://github.com/gfngfn/SATySFi/issues/46
 RUN opam pin add -y jbuilder 1.0+beta17 && opam pin add -y camlimages 4.2.6
 
-RUN opam install -y ppx_deriving && \
-    opam install -y menhir && \
-    opam install -y core_kernel.v0.10.0 && \
-    opam install -y ctypes && \
-    opam install -y uutf && \
-    opam install -y result && \
-    opam install -y bitv && \
-    opam install -y batteries && \
-    opam install -y yojson && \
-    opam install -y camlimages
-RUN eval `opam config env`
-
 RUN mkdir -p /home/opam/.satysfi/dist/fonts && \
     wget http://mirrors.ctan.org/fonts/junicode/fonts/Junicode.ttf -P /home/opam/.satysfi/dist/fonts && \
     wget http://mirrors.ctan.org/fonts/junicode/fonts/Junicode-Italic.ttf -P /home/opam/.satysfi/dist/fonts && \
