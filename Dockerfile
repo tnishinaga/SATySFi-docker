@@ -10,7 +10,7 @@ USER opam
 WORKDIR /home/opam/opam-repository
 RUN git pull && eval `opam config env` && opam update
 
-# current upstream of these libraries are broken.
+# current version of these libraries are broken.
 # see https://github.com/gfngfn/SATySFi/issues/46
 RUN opam pin add -y jbuilder 1.0+beta17 && opam pin add -y camlimages 4.2.6
 
@@ -21,9 +21,15 @@ RUN mkdir -p /home/opam/.satysfi/dist/fonts && \
     unzip -d /tmp /tmp/IPAexfont00301.zip && \
     mv /tmp/IPAexfont00301/ipaexg.ttf /tmp/IPAexfont00301/ipaexm.ttf /home/opam/.satysfi/dist/fonts
     
-RUN git clone https://github.com/gfngfn/SATySFi /home/opam/SATySFi
+# workaround for ArnoPro problem
+# see https://github.com/gfngfn/SATySFi/pull/58
+#RUN git clone https://github.com/gfngfn/SATySFi /home/opam/SATySFi
+RUN git clone https://github.com/pandaman64/SATySFi /home/opam/SATySFi -b use-junicode-stdja
 
 WORKDIR /home/opam/SATySFi
 
 RUN git submodule update --init --recursive && \
     opam pin add -y satysfi .
+
+# workaround for https://github.com/gfngfn/SATySFi/issues/38
+RUN cp -r /home/opam/.opam/4.06.0/share/satysfi/dist/ ~/.satysfi/
