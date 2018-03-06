@@ -8,20 +8,34 @@ RUN apt update && \
 USER opam
 
 WORKDIR /home/opam/opam-repository
-RUN git pull && opam update
+RUN git pull && eval `opam config env` && opam update
 
-RUN mkdir -p ~/.satysfi/dist/fonts && \
-    wget https://github.com/google/fonts/raw/master/apache/opensans/OpenSans-Regular.ttf -P ~/.satysfi/dist/fonts && \
-    wget https://github.com/google/fonts/raw/master/ofl/crimsontext/CrimsonText-Regular.ttf -P ~/.satysfi/dist/fonts && \
-    wget https://github.com/google/fonts/raw/master/ofl/crimsontext/CrimsonText-Italic.ttf -P ~/.satysfi/dist/fonts && \
+# current upstream of these libraries are broken.
+# see https://github.com/gfngfn/SATySFi/issues/46
+RUN opam pin add -y jbuilder 1.0+beta17 && opam pin add -y camlimages 4.2.6
+
+RUN opam install -y ppx_deriving && \
+    opam install -y menhir && \
+    opam install -y core_kernel.v0.10.0 && \
+    opam install -y ctypes && \
+    opam install -y uutf && \
+    opam install -y result && \
+    opam install -y bitv && \
+    opam install -y batteries && \
+    opam install -y yojson && \
+    opam install -y camlimages
+RUN eval `opam config env`
+
+RUN mkdir -p /home/opam/.satysfi/dist/fonts && \
+    wget http://mirrors.ctan.org/fonts/junicode/fonts/Junicode.ttf -P /home/opam/.satysfi/dist/fonts && \
+    wget http://mirrors.ctan.org/fonts/junicode/fonts/Junicode-Italic.ttf -P /home/opam/.satysfi/dist/fonts && \
     wget https://oscdl.ipa.go.jp/IPAexfont/IPAexfont00301.zip -P /tmp && \
     unzip -d /tmp /tmp/IPAexfont00301.zip && \
-    mv /tmp/IPAexfont00301/ipaexg.ttf /tmp/IPAexfont00301/ipaexm.ttf ~/.satysfi/dist/fonts
+    mv /tmp/IPAexfont00301/ipaexg.ttf /tmp/IPAexfont00301/ipaexm.ttf /home/opam/.satysfi/dist/fonts
     
-RUN git clone https://github.com/pandaman64/SATySFi /home/opam/SATySFi -b use-free-font
+RUN git clone https://github.com/gfngfn/SATySFi /home/opam/SATySFi
 
 WORKDIR /home/opam/SATySFi
 
 RUN git submodule update --init --recursive && \
-    opam pin add -y satysfi . && \
-    opam install satysfi
+    opam pin add -y satysfi .
