@@ -1,4 +1,4 @@
-FROM ocaml/opam:debian-9_ocaml-4.06.0
+FROM ocaml/opam:debian-9-ocaml-4.07
 
 USER root
 RUN apt update && \
@@ -24,4 +24,4 @@ WORKDIR /home/opam/SATySFi
 RUN opam pin add -y satysfi .
 
 # workaround for https://github.com/gfngfn/SATySFi/issues/38
-RUN cp -r /home/opam/.opam/4.06.0/share/satysfi/dist/ ~/.satysfi/
+RUN cp -r /home/opam/.opam/4.07/share/satysfi/dist/ ~/.satysfi/
